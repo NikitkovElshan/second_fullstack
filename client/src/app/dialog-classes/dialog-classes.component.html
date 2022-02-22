@@ -1,0 +1,29 @@
+<h3 *ngIf="!data" mat-dialog-title>Add Class</h3>
+<h3 *ngIf="data" mat-dialog-title>Edit Class</h3>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Год обучения</mat-label>
+    <input matInput placeholder="1" [(ngModel)]="clas.year">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Значение</mat-label>
+    <input matInput placeholder="A" [(ngModel)]="clas.mnemo">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Учитель</mat-label>
+    <mat-select [(ngModel)]="clas.classroom_teacher_id">
+      <mat-option *ngFor="let item of dataService.teachers" [value]="item.id">
+        {{item.surname}} {{item.name}} {{item.patronymic}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="save()" [disabled]="!clas.year ||  !clas.mnemo || !clas.classroom_teacher_id">Save</button>
+</div>

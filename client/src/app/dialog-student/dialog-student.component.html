@@ -1,0 +1,56 @@
+<h3 *ngIf="!data" mat-dialog-title>Add Student</h3>
+<h3 *ngIf="data" mat-dialog-title>Edit Student</h3>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Иванов</mat-label>
+    <input matInput placeholder="Фамилия" [(ngModel)]="student.surname">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Иван</mat-label>
+    <input matInput placeholder="Имя"[(ngModel)]="student.name">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Иванович</mat-label>
+    <input matInput placeholder="Отчество"[(ngModel)]="student.patronymic">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>1989</mat-label>
+    <input matInput placeholder="Год рождения" [(ngModel)]="student.born">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width"  appearance="fill">
+    <mat-label>Мужской/Женский</mat-label>
+    <mat-select [(ngModel)]="student.gender">
+      <mat-option  [value]="'male'">
+        Мужской
+      </mat-option>
+      <mat-option  [value]="'lemale'">
+        Женский
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Класс</mat-label>
+  <mat-select [(ngModel)]="student.class_id">
+    <mat-option *ngFor="let item of dataService.classes" [value]="item.id">
+      {{item.year}} {{item.mnemo}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="save()" [disabled]="
+  !student.name ||!student.surname ||
+  !student.gender ||!student.patronymic ||
+  !student.born ||!student.class_id
+">Save</button>
+</div>

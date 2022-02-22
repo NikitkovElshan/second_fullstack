@@ -1,0 +1,52 @@
+<h3 *ngIf="!data" mat-dialog-title>Add Teacher</h3>
+<h3 *ngIf="data" mat-dialog-title>Edit Teacher</h3>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Иванов</mat-label>
+    <input matInput placeholder="Фамилия" [(ngModel)]="teacher.surname">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Иван</mat-label>
+    <input matInput placeholder="Имя" [(ngModel)]="teacher.name">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Иванович</mat-label>
+    <input matInput placeholder="Отчество" [(ngModel)]="teacher.patronymic">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>1989</mat-label>
+    <input matInput placeholder="Год рождения" type="number" [(ngModel)]="teacher.born">
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width"  appearance="fill">
+    <mat-label>Мужской/Женский</mat-label>
+    <mat-select [(ngModel)]="teacher.gender">
+      <mat-option  [value]="'male'">
+        Мужской
+      </mat-option>
+      <mat-option  [value]="'lemale'">
+        Женский
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Алгебра</mat-label>
+    <input matInput  placeholder="Предмет" [(ngModel)]="teacher.subject">
+  </mat-form-field>
+
+
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="save()"
+          [disabled]="
+          !teacher.subject ||  !teacher.gender || !teacher.born ||
+          !teacher.patronymic ||  !teacher.name ||  !teacher.surname"
+  >Save</button>
+</div>
